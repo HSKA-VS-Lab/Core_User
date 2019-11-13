@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CoreUserApplication",
+            "request": "launch",
+            "mainClass": "de.hska.iwi.vslab.Core_User.CoreUserApplication",
+            "projectName": "Core_User"
+        }
+    ]
+}
