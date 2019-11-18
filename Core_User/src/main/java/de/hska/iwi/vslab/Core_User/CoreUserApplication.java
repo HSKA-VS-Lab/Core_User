@@ -1,6 +1,6 @@
 package de.hska.iwi.vslab.Core_User;
 
-import de.hska.iwi.vslab.Core_User.Interfaces.UserDB_Repo;
+import de.hska.iwi.vslab.Core_User.Interfaces.UserRepository;
 import de.hska.iwi.vslab.Core_User.Models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class CoreUserApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(UserDB_Repo repository) {
+	public CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
 			// save a few Users
 			repository.save(new User("Max123", "Max", "Mustermann", "password123", 1));
@@ -42,9 +42,8 @@ public class CoreUserApplication {
 			// fetch User by name
 			log.info("User found with findByUsername('Sabine123'):");
 			log.info("--------------------------------------------");
-			repository.findByUsername("Sabine123").forEach(user -> {
-				log.info(user.toString());
-			});
+
+			log.info(repository.findByUsername("Sabine123").toString());
 
 			// // fetch all Users
 			// log.info("Users found with findAll():");
