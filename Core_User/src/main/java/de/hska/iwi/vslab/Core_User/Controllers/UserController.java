@@ -16,14 +16,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user")
-    public List<User> getAllUsers() {
+    public User[] getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/user/{input}")
     public User getUser(@PathVariable String input) {
         // get by username
-        if(input.replaceAll("\\d","").length() > 0) // only digits in input
+        if (input.replaceAll("\\d", "").length() > 0) // only digits in input
             return userService.getUser(input);
         // get by id
         else
@@ -39,23 +39,23 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user")
-    public void addUser(@RequestBody User user) {
+    @PostMapping(path = "/user", consumes = "application/json")
+    public void addUser(@RequestBody(required = true) User user) {
         userService.addUser(user);
     }
 
-    @PutMapping("/user")
-    public void updateUser(@RequestBody User user) {
+    @PutMapping(path = "/user/{id}", consumes = "application/json")
+    public void updateUser(@PathVariable int id, @RequestBody(required = true) User user) {
         userService.updateUser(user);
     }
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable int id){
+    public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }
 
     @DeleteMapping("/user")
-    public void deleteUser(){
+    public void deleteUser() {
         userService.deleteAllUsers();
     }
 
