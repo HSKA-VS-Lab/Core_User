@@ -38,19 +38,18 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public long deleteAllUsers() {
-        long deleted = 0;
+    public void deleteAllUsers() {
         for (User user : userRepo.findAll())
-            deleted += userRepo.deleteById(user.getId());
-        return deleted;
+            userRepo.delete(user);
     }
 
     public long deleteUser(String name) {
         return userRepo.deleteByUsername(name);
     }
 
-    public long deleteUser(int id) {
-        return userRepo.deleteById(id);
+    public void deleteUser(int id) {
+        User user = userRepo.findById(id);
+        userRepo.delete(user);
     }
 
 }

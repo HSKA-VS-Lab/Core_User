@@ -44,7 +44,7 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @PutMapping(path = "/user/{id}", consumes = "application/json")
+    @RequestMapping(path = "/user/{id}", method=RequestMethod.PUT, consumes = "application/json")
     public void updateUser(@PathVariable int id, @RequestBody(required = true) User user) {
         userService.updateUser(user);
     }
