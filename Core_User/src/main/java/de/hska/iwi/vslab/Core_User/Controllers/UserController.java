@@ -5,12 +5,14 @@ import de.hska.iwi.vslab.Core_User.Models.User;
 import de.hska.iwi.vslab.Core_User.Services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
+@EnableCircuitBreaker
 public class UserController {
 
     @Autowired
