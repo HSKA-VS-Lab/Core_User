@@ -1,5 +1,6 @@
 package de.hska.iwi.vslab.Core_User.Controllers;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import de.hska.iwi.vslab.Core_User.Models.User;
 import de.hska.iwi.vslab.Core_User.Services.UserService;
 
@@ -16,8 +17,24 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user")
+    @HystrixCommand(fallbackMethod = "getFallbackRoles")
     public User[] getAllUsers() {
-        return userService.getAllUsers();
+        try
+        {
+            return userService.getAllUsers();
+        } catch (
+                Exception e) {
+            return null;
+        }
+    }
+
+    public User[] getFallbackUsers() {
+        User user1 = new User("userFallback1", "max", "mustermann","pw123", 0);
+        User user2 = new User("userFallback2", "marie", "musterfrau","pw123", 0);
+        User[] userA = new User[2];
+        userA[0] = user1;
+        userA[1] = user2;
+        return userA;
     }
 
     @GetMapping("/user/{input}")
