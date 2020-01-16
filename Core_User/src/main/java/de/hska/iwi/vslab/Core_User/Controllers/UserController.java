@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{input}")
-    @HystrixCommand(fallbackMethod = "fallbackGetUser")
+    //@HystrixCommand(fallbackMethod = "fallbackGetUser")
     public User getUser(@PathVariable String input) {
         // get by username
         if (input.replaceAll("\\d", "").length() > 0) // only digits in input
@@ -65,25 +65,25 @@ public class UserController {
     }
 
     @PostMapping(path = "/user", consumes = "application/json")
-    @HystrixCommand(fallbackMethod = "defaultFallback")
+    //@HystrixCommand(fallbackMethod = "defaultFallback")
     public void addUser(@RequestBody(required = true) User user) {
         userService.addUser(user);
     }
 
     @RequestMapping(path = "/user/{id}", method=RequestMethod.PUT, consumes = "application/json")
-    @HystrixCommand(fallbackMethod = "defaultFallbackWithId")
+    //@HystrixCommand(fallbackMethod = "defaultFallbackWithId")
     public void updateUser(@PathVariable int id, @RequestBody(required = true) User user) {
         userService.updateUser(user);
     }
 
     @DeleteMapping("/user/{id}")
-    @HystrixCommand(fallbackMethod = "defaultFallbackWithId")
+    //@HystrixCommand(fallbackMethod = "defaultFallbackWithId")
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }
 
     @DeleteMapping("/user")
-    @HystrixCommand(fallbackMethod = "defaultFallback")
+    //@HystrixCommand(fallbackMethod = "defaultFallback")
     public void deleteUser() {
         userService.deleteAllUsers();
     }
