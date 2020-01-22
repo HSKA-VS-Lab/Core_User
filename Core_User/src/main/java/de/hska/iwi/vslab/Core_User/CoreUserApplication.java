@@ -27,6 +27,7 @@ public class CoreUserApplication {
 			repository.save(new User("Max123", "Max", "Mustermann", "password123", 1));
 			repository.save(new User("Sabine123", "Sabine", "Mustermann", "password123", 1));
 			repository.save(new User("Hana123", "Hana", "Mustermann", "password123", 1));
+			repository.save(new User("admin", "admin", "admin", "admin", 0));
 
 			// fetch all Users
 			log.info("Users found with findAll():");
