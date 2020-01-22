@@ -17,7 +17,7 @@ public class User {
     private String password;
     private int roleId;
 
-    protected User() {
+    public User() {
     }
 
     public User(String username, String firstname, String lastname, String password, int roleId) {
