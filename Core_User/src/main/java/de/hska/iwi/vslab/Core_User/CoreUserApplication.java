@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 
 @EnableEurekaClient
 @SpringBootApplication
@@ -19,6 +20,15 @@ public class CoreUserApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CoreUserApplication.class, args);
 	}
+
+	/*@Bean
+	public RemoteTokenServices tokenService() {
+		RemoteTokenServices tokenService = new RemoteTokenServices();
+		tokenService.setCheckTokenEndpointUrl("http://localhost:8094/oauth/check_token");
+		tokenService.setClientId("coreUserId");
+		tokenService.setClientSecret("coreUserSecret");
+		return tokenService;
+	}*/
 
 	@Bean
 	public CommandLineRunner demo(UserRepository repository) {
