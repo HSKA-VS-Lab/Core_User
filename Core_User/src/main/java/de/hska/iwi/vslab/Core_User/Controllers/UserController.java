@@ -1,8 +1,12 @@
 package de.hska.iwi.vslab.Core_User.Controllers;
+
 import de.hska.iwi.vslab.Core_User.Models.User;
 import de.hska.iwi.vslab.Core_User.Services.UserService;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,6 +14,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/whoami")
+	public String whoami(@AuthenticationPrincipal(expression="name") String name) {
+		return name;
+    }
+
+    //@RolesAllowed({"ROLE_ADMIN"})
     @GetMapping("/user")
     public User[] getAllUsers() {
         User[] users = userService.getAllUsers();
