@@ -22,6 +22,15 @@ public class CoreUserApplication {
 		SpringApplication.run(CoreUserApplication.class, args);
 	}
 
+	/*@Bean
+	public RemoteTokenServices tokenService() {
+		RemoteTokenServices tokenService = new RemoteTokenServices();
+		tokenService.setCheckTokenEndpointUrl("http://localhost:8094/oauth/check_token");
+		tokenService.setClientId("coreUserId");
+		tokenService.setClientSecret("coreUserSecret");
+		return tokenService;
+	}*/
+
 	@Bean
 	public CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
