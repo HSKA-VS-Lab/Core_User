@@ -15,16 +15,22 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("*").authorizeRequests()
-            .antMatchers("/user").hasAuthority("ADMIN")
-            .antMatchers("/user/**").hasAuthority("USER")
-            .anyRequest().fullyAuthenticated();
-        // user/** funzt 
-        //http.antMatcher("/user").authorizeRequests()
-          //  .antMatchers("/user").hasAuthority("ADMIN")
-            //.antMatchers("/user/**").hasAuthority("ADMIN")
+        //http.authorizeRequests().antMatchers("/**").hasAuthority("ADMIN").anyRequest().fullyAuthenticated();
+            //.antMatchers("/user").hasAuthority("ADMIN") // this is never reached because the above is already hit
+            //.antMatchers("/user/**").hasAuthority("USER")
             //.anyRequest().fullyAuthenticated();
 
+        // user/** wird für alle durchgelassen 
+        //http.antMatcher("/user").authorizeRequests()
+        http.authorizeRequests() // look at all requests
+            //.antMatchers("/user").hasAuthority("ADMIN")//.anyRequest().fullyAuthenticated()
+            //.antMatchers("/user/**").hasAuthority("ROLE_ADMIN")
+            .anyRequest().fullyAuthenticated();
+
+            //http.antMatcher("/user") // "HttpSecurity only invoked when matching pattern"
+
+            // HttpSecurity
+            // ExpInReg
 
         //.authorizeRequests().antMatchers("/user").hasAuthority("ROLE_ADMIN")
         //.and().authorizeRequests().antMatchers("/user/*").fullyAuthenticated().anyRequest().permitAll();//.anyRequest().permitAll(); // this is not allowed
