@@ -14,10 +14,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/whoami")
-	public String whoami(@AuthenticationPrincipal(expression="name") String name) {
-		return name;
-    }
+    //@GetMapping("/whoami")
+	//public String whoami(@AuthenticationPrincipal(expression="name") String name) {
+	//	return name;
+    //}
 
     //@RolesAllowed({"ROLE_ADMIN"})
     @GetMapping("/user")
